@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "nameprotect",
+  "version": "1.0-SNAPSHOT",
+  "name": "NameProtect",
+  "description": "Changes your name Client-Side.",
+  "authors": [
+    "FoxOnTop",
+    "Aqua_Not"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/NameProtectLogo.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "me.aqua.NameProtect"
+    ]
+  },
+  "mixins": [
+    "nameprotect.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.9",
+    "fabric": "*",
+    "minecraft": ">=1.19.2"
+  }
+}
