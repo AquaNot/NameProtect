@@ -3,12 +3,10 @@
   "minVersion": "0.8",
   "package": "me.aqua.mixin",
   "compatibilityLevel": "JAVA_17",
-  "mixins": [],
   "client": [
     "TextVisitFactoryMixin"
   ],
   "injectors": {
     "defaultRequire": 1
-  },
-  "refmap": "nameprotect-refmap.json"
+  }
 }
