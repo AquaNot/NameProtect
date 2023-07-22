@@ -1,6 +1,11 @@
 # NameProtect
+- Changes your name client-side. Useful to prevent stream sniping and alt leaks.
 
-A client side mod for hiding your ign.
+## Commands
+- This mod uses client-side commands to function. These commands are:
+
+- /nameprotect toggle (on/off)
+- /nameprotect change <newname>
 
 ## Building
 You will need:
