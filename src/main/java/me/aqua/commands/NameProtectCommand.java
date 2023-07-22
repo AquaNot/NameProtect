@@ -11,6 +11,6 @@ import me.aqua.Init;
 
 public class NameProtectCommand {
     public static void register(CommandDispatcher<FabricClientCommandSource> dispatcher) {
-        dispatcher.register((LiteralArgumentBuilder)((LiteralArgumentBuilder)ClientCommandManager.literal((String)"nameprotect").then(ClientCommandManager.literal((String)"toggle").executes(ctx -> Init.toggleEnabled()))).then(ClientCommandManager.literal((String)"change").then(ClientCommandManager.argument((String)"newname", (ArgumentType)StringArgumentType.greedyString()).executes(ctx -> Init.changeName(StringArgumentType.getString((CommandContext)ctx, (String)"newname"))))));
+        dispatcher.register((LiteralArgumentBuilder)((LiteralArgumentBuilder)ClientCommandManager.literal("nameprotect").then(ClientCommandManager.literal("toggle").executes(ctx -> Init.toggleEnabled()))).then(ClientCommandManager.literal("change").then(ClientCommandManager.argument("newname", (ArgumentType)StringArgumentType.greedyString()).executes(ctx -> Init.changeName(StringArgumentType.getString((CommandContext)ctx, "newname"))))));
     }
 }
