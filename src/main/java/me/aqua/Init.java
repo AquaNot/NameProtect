@@ -27,17 +27,21 @@ public enum Init {
     }
 
     public static int toggleEnabled() {
-        boolean bl = enabled = !enabled;
+        enabled = !enabled;
         if (enabled) {
             MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(Text.literal("Toggled NameProtect §aON"));
-        }
-        if (!enabled) {
+        } else {
             MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(Text.literal("Toggled NameProtect §cOFF"));
         }
         return 0;
     }
 
     public static int changeName(String replacee) {
+        if (replacee.contains(" ") || replacee.contains("-") || replacee.contains("&") || replacee.contains("*") || replacee.contains("!") || replacee.contains("@") || replacee.contains("$") || replacee.contains("%") || replacee.contains("^") || replacee.contains("(") || replacee.contains(")") || replacee.contains("+") || replacee.contains("=")) {
+            MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(Text.literal("§4Username cannot contain spaces or symbols."));
+            return 0;
+        }
+
         replacement = replacee;
         MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(Text.literal("Name set to §b" + replacement));
         return 0;
@@ -45,7 +49,8 @@ public enum Init {
 
     public static String replaceName(String string) {
         if (string != null && enabled) {
-            return string.replace(MinecraftClient.getInstance().getSession().getUsername(), replacement);
+            String playerName = MinecraftClient.getInstance().getSession().getUsername();
+            return string.replaceAll("\\b" + playerName + "\\b", replacement);
         }
         return string;
     }
