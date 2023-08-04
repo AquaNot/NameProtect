@@ -34,5 +34,5 @@ jobs:
           path: /build/libs/NameProtect.jar 
       - uses: WurstPlus/action-discord-notifier@v1
         with:
-          message-title: A new test version has been released
+          message-title: A new version has been released
           webhook: ${{ secrets.discordwebhook }}
