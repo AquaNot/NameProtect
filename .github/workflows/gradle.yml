@@ -29,19 +29,19 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           # Artifact name
-          name: Better-NameProtect
+          name: NameProtect
           # A file, directory or wildcard pattern that describes what to upload
-          path: ./build/libs/Better-NameProtect.jar  
+          path: ./build/libs/NameProtect.jar  
       - name: Prepare Artifact for Discord upload
         env:
           RUN_ID: ${{ github.run_number }}
-        run: cp ./build/libs/Better-NameProtect.jar
+        run: cp ./build/libs/NameProtect.jar
       - name: Upload Artifact to Discord
         uses: sinshutu/upload-to-discord@master
         env:
           DISCORD_WEBHOOK: ${{ secrets.discordwebhook }}
         with:
-          args: ./build/libs/Better-NameProtect.jar
+          args: ./build/libs/NameProtect.jar
       - uses: WurstPlus/action-discord-notifier@v1
         with:
           message-title: A new test version has been released
