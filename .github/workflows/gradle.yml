@@ -32,6 +32,16 @@ jobs:
           name: NameProtect
           # A file, directory or wildcard pattern that describes what to upload
           path: ./build/libs/NameProtect.jar  
+      - name: Prepare Artifact for Discord upload
+        env:
+          RUN_ID: ${{ github.run_number }}
+        run: cp ./build/libs/NameProtect.jar
+      - name: Upload Artifact to Discord
+        uses: sinshutu/upload-to-discord@master
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.discordwebhook }}
+        with:
+          args: ./build/libs/NameProtect.jar
       - uses: WurstPlus/action-discord-notifier@v1
         with:
           message-title: A new test version has been released
