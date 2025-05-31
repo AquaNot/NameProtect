@@ -10,6 +10,6 @@ public class NameProtect implements ModInitializer {
     @Override
     public void onInitialize() {
         Init.INSTANCE.init();
-        LOGGER.info("Initializing NameProtect 1.2");
+        LOGGER.info("Initializing NameProtect 1.3");
     }
 }

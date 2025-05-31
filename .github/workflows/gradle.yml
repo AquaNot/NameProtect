@@ -1,48 +1,38 @@
 name: Gradle Build
 
-# thx moondark for making this a thing
-
 on:
   push:
+    branches:
+      - main
+      - master
+      - dev
   pull_request:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up JDK 17
-        uses: actions/setup-java@v1
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
         with:
-          java-version: 17
+          distribution: 'temurin'
+          java-version: '21'
+
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
+
       - name: Build with Gradle
-        run: |
-          ./gradlew clean
-          ./gradlew build
-      - name: List files
-        run: ls
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v2
+        run: ./gradlew clean build
+
+      - name: List files in build/libs
+        run: ls -l ./build/libs
+
+      - name: Upload build artifacts (.jar)
+        uses: actions/upload-artifact@v4
         with:
-          # Artifact name
           name: NameProtect
-          # A file, directory or wildcard pattern that describes what to upload
-          path: ./build/libs/*.jar  
-      - name: Prepare Artifact for Discord upload
-        env:
-          RUN_ID: ${{ github.run_number }}
-        run: cp ./build/libs/*.jar ./build/libs/NameProtect${GITHUB_SHA::6}.jar
-      - name: Upload Artifact to Discord
-        uses: sinshutu/upload-to-discord@master
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.discordwebhook }}
-        with:
-          args: ./build/libs/*.jar
-      - uses: WurstPlus/action-discord-notifier@v1
-        with:
-          message-title: A new version has been released
-          webhook: ${{ secrets.discordwebhook }}
+          path: ./build/libs/*.jar
